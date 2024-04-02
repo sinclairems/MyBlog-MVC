@@ -1,4 +1,4 @@
-# MyBlog-MVC
+# TechnicallySpeaking-Blog
 A simple blog site to demonstrate the MVC framework
 
 # 14 Model-View-Controller (MVC): Tech Blog
