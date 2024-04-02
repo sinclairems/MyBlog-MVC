@@ -1,0 +1,20 @@
+[
+  {
+    "title": "What is MVC?",
+    "posted_by": "Rich Thorne",
+    "posted_on": "2024-04-02",
+    "content": "MVC stands for Model-View-Controller. It is a software design pattern that separates the representation of information from the user's interaction with it. The model consists of the data and business logic, the view is the user interface, and the controller handles the input and updates the model and view accordingly."
+  },
+  {
+    "title": "What is RESTful API?",
+    "posted_by": "Jeny Peters",
+    "posted_on": "2024-04-03",
+    "content": "RESTful API stands for Representational State Transfer Application Programming Interface. It is an architectural style for designing networked applications. RESTful APIs use standard HTTP methods like GET, POST, PUT, DELETE to perform CRUD operations on resources. They are stateless, scalable, and easy to maintain."
+  },
+  {
+    "title": "What is the difference between PUT and POST?",
+    "posted_by": "Raquel Smith",
+    "posted_on": "2024-04-04",
+    "content": "PUT and POST are both HTTP methods used to send data to a server, but they have different purposes. PUT is used to update or replace an existing resource, while POST is used to create a new resource. PUT is idempotent, meaning multiple identical requests will have the same effect as a single request, while POST is not idempotent."
+  }
+]
