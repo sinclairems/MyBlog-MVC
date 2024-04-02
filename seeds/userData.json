@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Norman Baker",
+    "email": "norman.baker@example.com",
+    "password": "turtle"
+  },
+  {
+    "name": "Connie Reid",
+    "email": "connie.reid@example.com",
+    "password": "cash"
+  },
+  {
+    "name": "Gloria Burton",
+    "email": "gloria.burton@example.com",
+    "password": "sniffing"
+  },
+  {
+    "name": "Mark Mitchell",
+    "email": "mark.mitchell@example.com",
+    "password": "hockey"
+  },
+  {
+    "name": "Daisy Perry",
+    "email": "daisy.perry@example.com",
+    "password": "leather"
+  },
+  {
+    "name": "Heather Douglas",
+    "email": "heather.douglas@example.com",
+    "password": "sound"
+  }
+]
