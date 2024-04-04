@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Technically Speaking</title>
+    <link rel='stylesheet' href='styles.css' />
+  </head>
+  <body>
+    <header>
+      <h1>Technically Speaking</h1>
+    </header>
+    <main>
+      {{#each posts}}
+        <article>
+          <h2>{{title}}</h2>
+          <p>{{content}}</p>
+        </article>
+      {{/each}}
+    </main>
+    <footer>
+      <p>&copy; 2024 Technically Speaking. All rights reserved.</p>
+    </footer>
+    <script src='scripts.js'></script>
+  </body>
+</html>
