@@ -1,6 +1,7 @@
 // Import
 const router = require('express').Router();
-const { Blogpost } = require('../../models/Blogpost');
+const { Blogpost } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // GET all posts @ http://localhost:3001/api/posts
 router.get('/', async (req, res) => {
@@ -13,44 +14,61 @@ router.get('/', async (req, res) => {
 }
 });
 
-router.post('/', async (req, res) => {
-  const postData = await Blogpost.create(req.body);
+// Create a post
+router.post('/', withAuth, async (req, res) => {
+  try {
+    const newBlogpost = await Blogpost.create({
+      ...req.body,
+      user_id: req.session.user_id
+    });
 
-  return res.json(postData);
+    res.status(200).json(newBlogpost)
+  } catch (err) {
+    res.status(400).json(err);
+  }
 });
 
-router.get('/:id', async (req, res) => {
-  const postData = await Blogpost.findByPk(req.params.id);
-
-  return res.json(postData);
-});
-
-router.put('/:post_id', async (req, res) => {
-  const postData = await Blogpost.update(
-    {
-      title: req.body.title,
-      posted_by: req.body.posted_by,
-      posted_on: req.body.posted_on,
-      content: req.body.content,
-    },
-    {
+// Update a post
+router.put('/:id', async (req, res) => {
+  try {
+    const blogpostData = await Blogpost.update(req.body, {
       where: {
-        post_id: req.params.post_id,
-      },
+        id: req.params.id
+      }
+    });
+
+    if (!blogpostData[0]) {
+      res.status(404).json({ message: 'No post found with this id :(' });
+      return;
     }
-  );
 
-  return res.json(postData);
+    res.status(200).json(blogpostData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
+  
 
-router.delete('/:post_id', async (req, res) => {
-  const postData = await Blogpost.destroy({
-    where: {
-      post_id: req.params.post_id,
-    },
-  });
+// Delete a post
+router.delete('/:id', withAuth, async (req, res) => {
+  try {
+    const blogpostData = await Blogpost.destroy({
+      where: {
+        id: req.params.id,
+        user_id: req.session.user_id,
+      },
+    });
 
-  return res.json(postData);
-});
+    if (!blogpostData) {
+      res.status(404).json({ message: 'No post found with this id :(' });
+      return;
+    }
+
+    res.status(200).json(blogpostData);
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+})
 
 module.exports = router;

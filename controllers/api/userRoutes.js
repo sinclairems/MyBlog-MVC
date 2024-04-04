@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../../models/User');
+const { User } = require('../../models');
 
 // Get all users @ http://localhost:3001/api/users
 router.get('/', async (req, res) => {
@@ -29,14 +29,14 @@ router.post('/', async (req, res) => {
 });
 
 // Login a User
-route.post('/login', async (req, res) => {
+router.post('/login', async (req, res) => {
   try {
     const UserData = await User.findOne({ where: { email: req.body.email } });
 
     if (!UserData) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+        .json({ message: 'Incorrect email or password, please try again ;P' });
       return;
     }
 
@@ -45,7 +45,7 @@ route.post('/login', async (req, res) => {
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+        .json({ message: 'Incorrect email or password, please try again ;P' });
       return;
     }
 
@@ -53,7 +53,7 @@ route.post('/login', async (req, res) => {
       req.session.user_id = UserData.id;
       req.session.logged_in = true;
 
-      res.json({ user: UserData, message: 'You are now logged in!' });
+      res.json({ user: UserData, message: 'You are now logged in :D' });
     });
   } catch (err) {
     res.status(400).json(err);
@@ -64,31 +64,31 @@ route.post('/login', async (req, res) => {
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
-      res.status(204).end();
+      res.status(200).end('You are now logged out :D');
     });
   } else {
     res.status(404).end();
   }
 });
 
-// Delete a User
-router.delete('/:id', async (req, res) => {
-  try {
-    const UserData = await User.destroy({
-      where: {
-        id: req.params.id,
-      },
-    });
+// // Delete a User
+// router.delete('/:id', async (req, res) => {
+//   try {
+//     const UserData = await User.destroy({
+//       where: {
+//         id: req.params.id,
+//       },
+//     });
 
-    if (!UserData) {
-      res.status(404).json({ message: 'No user found with this id!' });
-      return;
-    }
+//     if (!UserData) {
+//       res.status(404).json({ message: 'No user found with this id!' });
+//       return;
+//     }
 
-    res.status(200).json(UserData);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     res.status(200).json(UserData);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 module.exports = router;

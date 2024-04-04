@@ -1,7 +1,9 @@
+// Imports
 const router = require('express').Router();
 const { User, Blogpost } = require('../models');
 const withAuth = require('../utils/auth');
 
+// GET user profile
 router.get('/profile', withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
@@ -19,6 +21,7 @@ router.get('/profile', withAuth, async (req, res) => {
   }
 });
 
+// Redirect to login if user is not logged in
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/profile');
@@ -28,6 +31,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// Redirect to signup if user is not logged in
 router.get('/user', async (req, res) => {
   try {
     const userData = await User.findAll({
@@ -42,6 +46,7 @@ router.get('/user', async (req, res) => {
   }
 });
 
+// Redirect to blogpost if user is not logged in
 router.get('/blogpost', async (req, res) => {
   try {
     const postData = await Blogpost.findAll();
