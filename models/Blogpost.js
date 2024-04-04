@@ -1,8 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
+// Create Blogpost model
 class Blogpost extends Model {}
 
+// Define table columns and configuration
 Blogpost.init(
   {
     id: {
@@ -40,6 +42,10 @@ Blogpost.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
+    timestamps: false,
     modelName: 'blogpost',
   }
 );
+
+
+module.exports = Blogpost;
