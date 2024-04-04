@@ -5,7 +5,7 @@ class Blogpost extends Model {}
 
 Blogpost.init(
   {
-    id: {
+    post_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -43,3 +43,6 @@ Blogpost.init(
     modelName: 'blogpost',
   }
 );
+
+
+model.exports = Blogpost;

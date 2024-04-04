@@ -1,12 +1,9 @@
 const router = require('express').Router();
-const Book = require('../../models/Blogpost');
+const { Blogpost } = require('../../models/Blogpost');
 
-// Change the anonymous callback function to become Asynchronous
 router.get('/', async (req, res) => {
-  // Store the bookData in a variable once the promise is resolved.
   const postData = await Blogpost.findAll();
 
-  // Return the bookData promise inside of the JSON response
   return res.json(postData);
 });
 
@@ -18,12 +15,6 @@ router.post('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   const postData = await Blogpost.findByPk(req.params.id);
-
-  return res.json(postData);
-});
-
-router.post('/', async (req, res) => {
-  const postData = await Blogpost.create(req.body);
 
   return res.json(postData);
 });
