@@ -40,9 +40,10 @@ Blogpost.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
+    timestamps: false,
     modelName: 'blogpost',
   }
 );
 
 
-model.exports = Blogpost;
+module.exports = Blogpost;

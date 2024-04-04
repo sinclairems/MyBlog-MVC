@@ -12,12 +12,7 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  for (const blogpost of postData) {
-    await Blogpost.create({
-      ...project,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-    });
-  }
+  const posts = await Blogpost.bulkCreate(postData);
 
   process.exit(0);
 };
