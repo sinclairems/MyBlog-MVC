@@ -7,7 +7,7 @@ class Blogpost extends Model {}
 // Define table columns and configuration
 Blogpost.init(
   {
-    post_id: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,

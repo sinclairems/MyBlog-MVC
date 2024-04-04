@@ -1,10 +1,16 @@
+// Import
 const router = require('express').Router();
 const { Blogpost } = require('../../models/Blogpost');
 
+// GET all posts @ http://localhost:3001/api/posts
 router.get('/', async (req, res) => {
-  const postData = await Blogpost.findAll();
+  try {
+    const postData = await Blogpost.findAll();
 
-  return res.json(postData);
+    res.json(postData)
+} catch (err) {
+    res.status(500).json(err);
+}
 });
 
 router.post('/', async (req, res) => {
