@@ -3,6 +3,15 @@ const router = require('express').Router();
 const { User, Blogpost } = require('../models');
 const withAuth = require('../utils/auth');
 
+// Render homepage
+router.get('/', async (req, res) => {
+  try {
+    res.render('homepage');
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // GET user profile
 router.get('/profile', withAuth, async (req, res) => {
   try {
@@ -41,6 +50,15 @@ router.get('/user', async (req, res) => {
     const users = userData.map((user) => user.get({ plain: true }));
 
     res.json(users);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Render blogpost
+router.get('/blogpost', async (req, res) => {
+  try {
+    res.render('blogpost');
   } catch (err) {
     res.status(500).json(err);
   }

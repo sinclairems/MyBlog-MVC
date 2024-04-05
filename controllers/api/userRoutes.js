@@ -55,6 +55,7 @@ router.post('/login', async (req, res) => {
 
       res.json({ user: UserData, message: 'You are now logged in :D' });
     });
+
   } catch (err) {
     res.status(400).json(err);
   }
@@ -71,24 +72,24 @@ router.post('/logout', (req, res) => {
   }
 });
 
-// // Delete a User
-// router.delete('/:id', async (req, res) => {
-//   try {
-//     const UserData = await User.destroy({
-//       where: {
-//         id: req.params.id,
-//       },
-//     });
+// Delete a User
+router.delete('/:id', async (req, res) => {
+  try {
+    const UserData = await User.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
 
-//     if (!UserData) {
-//       res.status(404).json({ message: 'No user found with this id!' });
-//       return;
-//     }
+    if (!UserData) {
+      res.status(404).json({ message: 'No user found with this id!' });
+      return;
+    }
 
-//     res.status(200).json(UserData);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    res.status(200).json(UserData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;

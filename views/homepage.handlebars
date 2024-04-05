@@ -1,0 +1,18 @@
+<section>
+  <h1>My Posts</h1>
+  {{#each posts}}
+    {{> post}}
+  {{/each}}
+</section>
+
+<section>
+  <h1>Update a Post</h1>
+  {{#each posts}}
+    {{> post-form}}
+  {{/each}}
+</section>
+
+<section>
+  <h1>Create a Post</h1>
+  {{> post-form}}
+</section>
